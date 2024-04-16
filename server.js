@@ -4,11 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Registration = require('./models/Reg');
-const expressSession = require('express-session')({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: false
-});
+const expressSession = require('express-session');
 const env = require('dotenv');
 const port = process.env.PORT || 4000;
 
@@ -26,8 +22,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public/uploads', express.static(path.join(__dirname, '/public/uploads')));
-app.use(expressSession);
-app.use(express.static('/public/images/'));
+app.use(expressSession({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(express.static(path.join(__dirname, 'public', 'images')));
 
 // PASSPORT CONFIGURATION
 app.use(passport.initialize());
