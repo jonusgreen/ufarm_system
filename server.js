@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const config = require('./config/db');
 const passport = require('passport');
 const env = require('dotenv')
+const port = process.env.PORT || 4000
 
 //Defining Express session------------/
 const expressSession = require('express-session')({
@@ -83,4 +84,4 @@ app.get("*", (req, res) => {
 });
 
 // Bootstrapping Server always the last line of code in the server file(index.js).
-app.listen(4000, () => console.log("We are listening on port 4000"));
+app.listen(port, () => console.log(`We are listening on port ${port}`));
