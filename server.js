@@ -51,7 +51,7 @@ app.use('/', produceRoutes);
 
 // 404 Route
 app.get("*", (req, res) => {
-    res.send("404! This is an invalid URL.");
+    res.send("index.js");
 });
 
 // BOOTSTRAPPING SERVER
