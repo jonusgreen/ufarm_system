@@ -9,14 +9,15 @@ body {
 
 .logo-text{
   background: url('../images/logo.png');
-  height: 90px;
+  height: 100px;
   width: 250px;
   border-radius: 30px;
   text-align: left;
-  padding-top: 28px;
+  padding-top: 20px;
   font-weight: 600;
   margin-left: 1px;
   font-family: Futura;
+
 }
 
 a {
@@ -66,7 +67,7 @@ section {
 
 #home{
     background: url(../images/Homepic.jpg);
-    min-height: 100vh;
+    min-height: 100px;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

@@ -5,6 +5,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const config = require('./config/db');
 const passport = require('passport');
+const env = require('dotenv')
 
 //Defining Express session------------/
 const expressSession = require('express-session')({
@@ -28,19 +29,26 @@ const produceRoutes = require('./routes/produceRoutes');
 //INSNTANTIATIONS---------------------/
 const app = express();
 
-//Setting up database connections
-mongoose.connect(config.database,{ useNewUrlParser: true });
-const db = mongoose.connection;
+// Setting up database connections
+// mongoose.connect(config.database,{ useNewUrlParser: true });
+// const db = mongoose.connection;
 
-// Check connection-------------------/
-db.once('open', function(){
-  console.log('Connected to MongoDB');
-});
+
+mongoose.connect("mongodb+srv://jonusashaba:blGnGdsyGvIbsw0f@cluster0.kj6tzlh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(()=> {console.log("connected to mongodb");
+})
+.catch((err)=>{
+  console.log(err);
+})
+
+// // Check connection-------------------/
+// db.once('open', function(){
+//   console.log('Connected to MongoDB');
+// });
 
 // Check for db errors
-db.on('error', function(err){
-  console.error(err);
-});
+// db.on('error', function(err){
+//   console.error(err);
+// });
 
 //CONFIGURATIONS ------------------------/
 app.set('view engine', 'pug')
