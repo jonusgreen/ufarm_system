@@ -4,7 +4,11 @@ const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Registration = require('./models/Reg');
-const expressSession = require('express-session');
+const expressSession = require('express-session')({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+});
 const env = require('dotenv');
 const port = process.env.PORT || 4000;
 
@@ -22,12 +26,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public/uploads', express.static(path.join(__dirname, '/public/uploads')));
-app.use(expressSession({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: false
-}));
-app.use(express.static(path.join(__dirname, 'public', 'images')));
+app.use(expressSession);
+app.use(express.static('/public/images/'));
 
 // PASSPORT CONFIGURATION
 app.use(passport.initialize());
@@ -49,10 +49,10 @@ app.use('/', foRoutes);
 app.use('/', authRoutes);
 app.use('/', produceRoutes);
 
-// 404 Route
-app.get("*", (req, res) => {
-    res.send("index.js");
-});
+// // 404 Route
+// app.get("*", (req, res) => {
+//     res.send("404! This is an invalid URL.");
+// });
 
 // BOOTSTRAPPING SERVER
 app.listen(port, () => console.log(`Server is running on port ${port}`));
