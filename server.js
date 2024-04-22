@@ -49,10 +49,10 @@ app.use('/', foRoutes);
 app.use('/', authRoutes);
 app.use('/', produceRoutes);
 
-// // 404 Route
-// app.get("*", (req, res) => {
-//     res.send("404! This is an invalid URL.");
-// });
+// 404 Route
+app.get("*", (req, res) => {
+    res.send("404! This is an invalid URL.");
+});
 
 // BOOTSTRAPPING SERVER
 app.listen(port, () => console.log(`Server is running on port ${port}`));
